@@ -1,5 +1,5 @@
 {
-  "name": "loftschool-example",
+  "name": "Chat",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -54,8 +54,5 @@
     "webpack-cli": "3.3.12",
     "webpack-dev-server": "3.11.3",
     "ws": "8.8.1"
-  },
-  "devDependencies": {
-    "ymaps": "0.2.1"
   }
 }
