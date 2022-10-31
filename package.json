@@ -1,0 +1,61 @@
+{
+  "name": "loftschool-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "codestyle": "eslint projects",
+    "codestyle:fix": "eslint projects --fix",
+    "travis": "npm run codestyle && npm test",
+    "build": "webpack --progress --colors",
+    "build:prod": "NODE_ENV=production webpack --progress --colors",
+    "watch": "webpack-dev-server --progress --colors",
+    "start": "node ./projects/project-chat/server/websocket.js & npm run watch",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "author": "",
+  "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.[jt]s": [
+      "eslint --cache --fix"
+    ]
+  },
+  "dependencies": {
+    "@babel/core": "7.18.10",
+    "@babel/plugin-transform-runtime": "7.18.10",
+    "@babel/preset-env": "7.18.10",
+    "@babel/runtime": "7.18.9",
+    "babel-eslint": "10.1.0",
+    "babel-jest": "26.6.3",
+    "babel-loader": "8.2.5",
+    "clean-webpack-plugin": "3.0.0",
+    "css-loader": "3.6.0",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-plugin-jest": "23.20.0",
+    "eslint-plugin-prettier": "3.4.1",
+    "file-loader": "6.2.0",
+    "html-webpack-plugin": "4.5.2",
+    "http": "0.0.1-security",
+    "husky": "4.3.8",
+    "jest": "26.6.3",
+    "lint-staged": "10.5.4",
+    "mini-css-extract-plugin": "0.9.0",
+    "node-fetch-polyfill": "2.0.6",
+    "prettier": "2.7.1",
+    "raw-loader": "4.0.2",
+    "webpack": "4.46.0",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "3.11.3",
+    "ws": "8.8.1"
+  },
+  "devDependencies": {
+    "ymaps": "0.2.1"
+  }
+}

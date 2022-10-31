@@ -1,0 +1,513 @@
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  #app {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .bg {
+    background-color: #17212B;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .bg--chat {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  .auth {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .auth__img {
+    width: 139px;
+    height: 139px;
+    background-color: #232F3D;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .auth__img img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .auth__title {
+    margin-top: 29px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  .auth__descr {
+    font-size: 16px;
+    color: #7F91A4;
+    margin-top: 13px;
+  }
+
+  .auth__form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .form__input {
+    background: transparent;
+    border: 0;
+    outline: none;
+    font-size: 16px;
+    font-weight: 300;
+    color: #858F98;
+    padding: 10px;
+    border-bottom: 1px solid #465461;
+  }
+
+  .form__input:focus {
+    border-bottom-color: #5188C0;
+    color: #fff;
+  }
+
+  .form__user {
+    align-self: stretch;
+  }
+
+  .form__btn {
+    font-size: 15px;
+    text-transform: uppercase;
+    padding: 12px 40px;
+    background-color: #5188C1;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+  }
+
+  .form__msg {
+    margin-right: 10px;
+    flex: 1;
+  }
+
+  .auth__btn {
+    margin-top: 40px;
+  }
+
+  .friends {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow: hidden;
+  }
+
+  .friends__menu {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 27px;
+  }
+
+  .friends__list {
+    flex: 1;
+    padding-left: 15px;
+    list-style-type: none;
+  }
+
+  .friend {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .friend:last-child {
+    margin-bottom: 0;
+  }
+
+  .friend__photo {
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .friend__photo img {
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    object-fit: cover;
+  }
+
+  .friend__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .friend__name {
+    color: #5387C1;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .friend__message {
+    color: #7F91A4;
+    font-weight: 300;
+    overflow: hidden;
+  }
+
+  .hamburger {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  .hamburger__item {
+    width: 100%;
+    height: 2px;
+    background: #6C7982;
+    margin-bottom: 3px;
+  }
+
+  .hamburger__item:last-child {
+    margin-bottom: 0;
+  }
+
+  .chat {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+
+  .chat__menu {
+    height: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px 16px;
+  }
+
+  .chat__title {
+    color: #fff;
+  }
+
+  .chat__descr {
+    color: #7F91A4;
+    font-size: 12px;
+  }
+
+  .chat__wrapper {
+    background-color: #0E1621;
+    flex: 1;
+    overflow-y: scroll;
+  }
+  .chat__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 35px 63px;
+  }
+
+  .chat__content:hover {
+    overflow-y: auto;
+  }
+
+  .chat__new-message {
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .chat__form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+  }
+
+  .chat__btn {
+    text-transform: none;
+  }
+
+  .message {
+    position: relative;
+    font-weight: 300;
+    font-size: 14px;
+    margin-bottom: 4px;
+    max-width: 50%;
+  }
+
+  .message:last-child {
+    margin-bottom: 0;
+  }
+
+  .message--another {
+    align-self: flex-start;
+  }
+
+  .message__content {
+    color: #fff;
+    background-color: #2B5279;
+    padding: 9px 60px 9px 11px;
+    border-radius: 5px;
+  }
+
+  .message__time {
+    position: absolute;
+    color: #658FB7;
+    right: 10px;
+    bottom: 4px;
+  }
+
+  .message__name {
+    color: #5387C1;
+    margin-bottom: 4px;
+  }
+
+  .message__tick {
+    position: absolute;
+    right: -12px;
+    bottom: 4px;
+    border: 8px solid transparent;
+    border-bottom: 8px solid #2B5279;
+    border-left: 8px solid #2B5279;
+  }
+
+  .message__tick--another {
+    right: auto;
+    left: -12px;
+    border: 8px solid transparent;
+    border-bottom: 8px solid #2B5279;
+    border-right: 8px solid #2B5279;
+  }
+
+  .message__img {
+    position: absolute;
+    right: -50px;
+    bottom: 4px;
+    border-radius: 50%;
+    width: 33px;
+    height: 33px;
+    object-fit: cover;
+  }
+
+  .message__img--another {
+    left: -50px;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .newphoto {
+    position: absolute;
+    width: 360px;
+    height: 220px;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #17212B;
+    color: #fff;
+  }
+
+  .newphoto__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 30px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .newphoto__close {
+    position: relative;
+    cursor: pointer;
+    align-self: flex-end;
+    flex-shrink: 0;
+    right: 0;
+    top: 0;
+    width: 17px;
+    height: 17px;
+  }
+
+  .newphoto__close::before {
+    position: absolute;
+    content: '';
+    top: 7px;
+    left: -1px;
+    width: 22px;
+    height: 2px;
+    background-color: #747E87;
+    transform: rotate(-45deg);
+  }
+
+  .newphoto__close::after {
+    position: absolute;
+    content: '';
+    top: 7px;
+    left: -1px;
+    width: 22px;
+    height: 2px;
+    background-color: #747E87;
+    transform: rotate(45deg);
+  }
+
+  .newphoto__title {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .newphoto__user {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 25px;
+  }
+
+  .newphoto__name {
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 15px;
+  }
+
+  .newphoto__input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .newphoto__label {
+    cursor: pointer;
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    display: flex;
+    overflow: hidden;
+    background: url('http://localhost:8080/projects/project-chat/camera.png') no-repeat center center #232F3D;
+  }
+</style>
+
+<div id="app">
+
+</div>
+<template id="auth">
+  <div class="bg">
+    <div class="auth">
+      <div class="auth__img"><img src="projects/project-chat/auth.svg" alt=""></div>
+      <div class="auth__title">Авторизация</div>
+      <div class="auth__descr">Введите, пожалуйста, свой ник для дальнейшей авторизации</div>
+      <form action="#" class="auth__form form">
+        <input type="text" class="form__user form__input" placeholder="Введите свой ник" />
+        <input type="submit" class="auth__btn form__btn" value="Войти" />
+      </form>
+    </div>
+  </div>
+</template>
+<template id="chat">
+  <div class="bg bg--chat">
+    <div class="friends">
+      <div class="friends__menu">
+        <div class="hamburger">
+          <div class="hamburger__item"></div>
+          <div class="hamburger__item"></div>
+          <div class="hamburger__item"></div>
+        </div>
+      </div>
+      <ul class="friends__list">
+        <li class="friends__item friend">
+          <div class="friend__photo">
+            <img src="projects/project-chat/boroda.jpg" alt="" class="friend__img">
+          </div>
+          <div class="friend__text">
+            <div class="friend__name"></div>
+            <div class="friend__message"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="chat">
+      <div class="chat__menu">
+        <div class="chat__title">Чат</div>
+        <div class="chat__descr"></div>
+      </div>
+      <div class="chat__wrapper">
+        <div class="chat__content"></div>
+      </div>
+      <div class="chat__new-message">
+        <form action="#" class="chat__form form">
+          <input type="text" class="form__msg form__input" placeholder="Введите сообщение...">
+          <input type="submit" class="chat__btn form__btn" value="Отправить" />
+        </form>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="message">
+  <div class="message">
+    <div class="message__name"></div>
+    <img src="projects/project-chat/boroda.jpg" alt="" class="message__img">
+    <div class="message__content"></div>
+    <div class="message__tick"></div>
+    <div class="message__time"></div>
+  </div>
+</template>
+<template id="loadphoto">
+  <div class="overlay">
+    <div class="newphoto">
+      <div class="newphoto__inner">
+        <div class="newphoto__close"></div>
+        <div class="newphoto__title">Загрузка фото</div>
+        <div class="newphoto__user">
+          <label for="photoInput" class="newphoto__label">
+            <input type="file" class="newphoto__input" id="photoInput">
+            <img src="projects/project-chat/1x1.png" alt="" class="newphoto__preview">
+          </label>
+          <div class="newphoto__name"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
